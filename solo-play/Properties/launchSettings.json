@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "solo-play": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)"
+    }
+  }
+}
