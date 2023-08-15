@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:solo_play.Views"
+        xmlns:st="clr-namespace:solo_play.Views.Stateless"
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -22,7 +23,18 @@
             <Button Content="ツモ" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Top" />
             <Button Content="リーチ" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Top" IsEnabled="False" />
         </StackPanel>
-        <Rectangle HorizontalAlignment="Left" Height="139" Margin="28,31,0,0" Stroke="Black" VerticalAlignment="Top" Width="732" Fill="Green"/>
+            <ItemsControl ItemsSource="{Binding Tehai}" HorizontalAlignment="Left" Height="139" Margin="28,31,0,0" VerticalAlignment="Top" Width="732" Background="Green">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <st:Haiga Pai="{Binding}" Width="24" Height="34" Margin="3,0,0,0" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
     </Grid>
 </Window>

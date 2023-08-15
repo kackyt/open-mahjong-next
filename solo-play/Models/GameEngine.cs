@@ -1,5 +1,6 @@
 ﻿using OpenMahjong;
 using Reactive.Bindings;
+using solo_play.OpenMahjong;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace solo_play.Models
     {
         private IntPtr _coreObject;
         private IntPtr _stateBuf;
+        private int _stateSize;
 
         public static readonly byte[] title = Encoding.UTF8.GetBytes("solo-play\0");
 
@@ -46,15 +48,29 @@ namespace solo_play.Models
             _coreObject = Marshal.AllocHGlobal((Int32)siz);
 
             siz = get_player_mem_size();
+            _stateSize = (Int32)siz;
 
-            _stateBuf = Marshal.AllocHGlobal((Int32)siz);
+            _stateBuf = Marshal.AllocHGlobal(_stateSize);
 
             Tehai = new ReactiveCollection<PaiT>();
         }
 
         public void Reset()
         {
+            Tehai.Clear();
+
             initialize(_coreObject, title, 1);
+
+            // 手牌を持ってきてReactiveCollectionに突っ込む
+
+            get_player_state(_coreObject, 0, _stateBuf);
+
+            Player player = FlatBufferLoader.LoadFromMemory<Player>(_stateBuf, _stateSize);
+
+            for (int i = 0; i < player.TehaiLen; i++)
+            {
+                Tehai.Add(player.Tehai(i).UnPack());
+            }
         }
     }
 }
