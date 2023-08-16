@@ -70,10 +70,12 @@
                 </i:Interaction.Triggers>
             </Button>
         </Canvas>
-        <StackPanel Orientation="Horizontal" Margin="20, 200, 0, 0">
+        <StackPanel Orientation="Horizontal" Margin="20, 180, 0, 0" Height="32">
             <Button Content="リセット" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Command="{Binding ResetCommand}"/>
             <Button Content="和了" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Top" />
             <Button Content="リーチ" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Top" IsEnabled="False" />
+            <TextBlock Text="シャンテン数"  VerticalAlignment="Center" Margin="20,0,0,0"/>
+            <TextBlock Text="{Binding Shanten.Value}" VerticalAlignment="Center" Margin="20,0,0,0" />
         </StackPanel>
     </Grid>
 </Window>

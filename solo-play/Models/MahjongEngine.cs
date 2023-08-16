@@ -21,6 +21,7 @@ namespace solo_play.Models
         public ReactiveCollection<PaiT> Tehai { get; }
         public ReactiveCollection<PaiT> Kawahai { get; }
         public ReactivePropertySlim<PaiT> Tsumohai { get; }
+        public ReactivePropertySlim<int> Shanten { get; }
 
         private static readonly Lazy<MahjongEngine> _instance = new(() => new MahjongEngine());
 
@@ -59,6 +60,7 @@ namespace solo_play.Models
             Tehai = new ReactiveCollection<PaiT>();
             Tsumohai = new ReactivePropertySlim<PaiT>();
             Kawahai = new ReactiveCollection<PaiT>();
+            Shanten = new ReactivePropertySlim<int>();
         }
 
 
@@ -83,6 +85,7 @@ namespace solo_play.Models
             }
 
             Tsumohai.Value = player.Tsumohai.UnPack();
+            Shanten.Value = get_player_shanten(_coreObject, 0);
         }
 
         public void Reset()

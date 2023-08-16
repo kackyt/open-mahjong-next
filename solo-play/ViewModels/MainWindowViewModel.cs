@@ -17,6 +17,7 @@ namespace solo_play.ViewModels
         public ReadOnlyReactiveCollection<PaiT> Kawahai { get; }
         public ReadOnlyReactiveCollection<PaiT> Tehai { get; }
         public ReadOnlyReactivePropertySlim<PaiT> Tsumohai { get; }
+        public ReadOnlyReactivePropertySlim<int> Shanten { get; }
 
         public DelegateCommand ResetCommand { get; }
         public DelegateCommand<int?> SutehaiCommand { get; }
@@ -26,6 +27,7 @@ namespace solo_play.ViewModels
             Tehai = MahjongEngine.Instance.Tehai.ToReadOnlyReactiveCollection();
             Kawahai = MahjongEngine.Instance.Kawahai.ToReadOnlyReactiveCollection();
             Tsumohai = MahjongEngine.Instance.Tsumohai.ToReadOnlyReactivePropertySlim(new PaiT());
+            Shanten = MahjongEngine.Instance.Shanten.ToReadOnlyReactivePropertySlim(99);
 
             ResetCommand = new DelegateCommand(Reset);
             SutehaiCommand = new DelegateCommand<int?>(Sutehai);
