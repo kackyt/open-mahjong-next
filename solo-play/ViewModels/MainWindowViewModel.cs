@@ -14,20 +14,35 @@ namespace solo_play.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
-        public DelegateCommand ResetCommand { get; }
+        public ReadOnlyReactiveCollection<PaiT> Kawahai { get; }
         public ReadOnlyReactiveCollection<PaiT> Tehai { get; }
+        public ReadOnlyReactivePropertySlim<PaiT> Tsumohai { get; }
+
+        public DelegateCommand ResetCommand { get; }
+        public DelegateCommand<int?> SutehaiCommand { get; }
 
         public MainWindowViewModel()
         {
-            ResetCommand = new DelegateCommand(Reset);
+            Tehai = MahjongEngine.Instance.Tehai.ToReadOnlyReactiveCollection();
+            Kawahai = MahjongEngine.Instance.Kawahai.ToReadOnlyReactiveCollection();
+            Tsumohai = MahjongEngine.Instance.Tsumohai.ToReadOnlyReactivePropertySlim(new PaiT());
 
-            Tehai = GameEngine.Instance.Tehai.ToReadOnlyReactiveCollection();
+            ResetCommand = new DelegateCommand(Reset);
+            SutehaiCommand = new DelegateCommand<int?>(Sutehai);
         }
 
 
         public void Reset()
         {
-            GameEngine.Instance.Reset();
+            MahjongEngine.Instance.Reset();
+        }
+
+        public void Sutehai(int? index)
+        {
+            if (index.HasValue)
+            {
+                MahjongEngine.Instance.Sutehai((uint)index.Value);
+            }
         }
     }
 }
