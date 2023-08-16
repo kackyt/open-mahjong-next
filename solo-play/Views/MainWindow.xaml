@@ -22,7 +22,7 @@
     <Window.Resources>
         <sys:Int32 x:Key="TsumoIndex">13</sys:Int32>
     </Window.Resources>
-    <Grid>
+    <Grid Cursor="">
         <Canvas HorizontalAlignment="Left" VerticalAlignment="Top" Width="732" Height="140" Margin="28, 31, 0, 0" Background="Green">
             <!-- 河牌の表示 -->
             <ItemsControl ItemsSource="{Binding Kawahai}" HorizontalAlignment="Left" Canvas.Left="27" Canvas.Top="30" VerticalAlignment="Top" Width="350" Height="34">
@@ -72,7 +72,7 @@
         </Canvas>
         <StackPanel Orientation="Horizontal" Margin="20, 180, 0, 0" Height="32">
             <Button Content="リセット" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Command="{Binding ResetCommand}"/>
-            <Button Content="和了" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Top" />
+            <Button Content="和了" Command="{Binding AgariCommand}" IsEnabled="{Binding CanAgari.Value}" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Top" />
             <Button Content="リーチ" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Top" IsEnabled="False" />
             <TextBlock Text="シャンテン数"  VerticalAlignment="Center" Margin="20,0,0,0"/>
             <TextBlock Text="{Binding Shanten.Value}" VerticalAlignment="Center" Margin="20,0,0,0" />

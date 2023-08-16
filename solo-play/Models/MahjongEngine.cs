@@ -60,7 +60,7 @@ namespace solo_play.Models
             Tehai = new ReactiveCollection<PaiT>();
             Tsumohai = new ReactivePropertySlim<PaiT>();
             Kawahai = new ReactiveCollection<PaiT>();
-            Shanten = new ReactivePropertySlim<int>();
+            Shanten = new ReactivePropertySlim<int>(99);
         }
 
 
